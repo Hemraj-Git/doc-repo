@@ -25,7 +25,7 @@ export function RolesView({ roles, permissions, myPermissions }: Props) {
     <div className="space-y-8">
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">Roles</h2>
+          <h2 className="section-heading">Roles</h2>
           <Button onClick={() => setCreating(true)}>
             <Plus /> New role
           </Button>
@@ -65,11 +65,11 @@ export function RolesView({ roles, permissions, myPermissions }: Props) {
                 </CardHeader>
                 <CardContent className="flex gap-4 text-sm text-muted-foreground">
                   <span>
-                    <span className="font-medium text-foreground tabular-nums">{role.permissions.length}</span> permissions
+                    <span className="font-medium text-foreground tabular-nums">{role.permissions.length}</span> {role.permissions.length === 1 ? "permission" : "permissions"}
                   </span>
                   <span className="flex items-center gap-1">
                     <Users className="size-3.5" />
-                    <span className="font-medium text-foreground tabular-nums">{role.userCount}</span> users
+                    <span className="font-medium text-foreground tabular-nums">{role.userCount}</span> {role.userCount === 1 ? "user" : "users"}
                   </span>
                 </CardContent>
               </Card>
@@ -79,8 +79,8 @@ export function RolesView({ roles, permissions, myPermissions }: Props) {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">Permission matrix</h2>
-        <div className="overflow-x-auto rounded-xl border">
+        <h2 className="section-heading">Permission matrix</h2>
+        <div className="overflow-x-auto rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>
@@ -96,7 +96,7 @@ export function RolesView({ roles, permissions, myPermissions }: Props) {
               {categories.map((category) => (
                 <Fragment key={category}>
                   <TableRow className="bg-muted/40 hover:bg-muted/40">
-                    <TableCell colSpan={roles.length + 1} className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                    <TableCell colSpan={roles.length + 1} className="section-label">
                       {category}
                     </TableCell>
                   </TableRow>

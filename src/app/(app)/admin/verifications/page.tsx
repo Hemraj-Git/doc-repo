@@ -10,13 +10,14 @@ import { formatDateTime } from "@/lib/format"
 import { VERIFICATION_OUTCOME_LABELS } from "@/lib/students"
 import { parseVerificationFilters } from "./filters"
 import { VerificationsToolbar } from "./verifications-toolbar"
+import { EmptyState } from "@/components/empty-state"
 
 export const metadata: Metadata = { title: "Verification Log" }
 
 const OUTCOME_STYLES: Record<string, string> = {
-  matched: "border-emerald-600/30 bg-emerald-50 text-emerald-800",
-  not_matched: "border-amber-600/30 bg-amber-50 text-amber-800",
-  rate_limited: "border-rose-600/30 bg-rose-50 text-rose-800",
+  matched: "border-success-line bg-success-soft text-success-text",
+  not_matched: "border-warning-line bg-warning-soft text-warning-text",
+  rate_limited: "border-danger-line bg-danger-soft text-danger-text",
   captcha_failed: "border-border bg-muted text-muted-foreground",
 }
 
@@ -34,12 +35,11 @@ export default async function VerificationsPage({ searchParams }: PageProps<"/ad
       />
       <VerificationsToolbar />
       {rows.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <BadgeCheck className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={BadgeCheck}>
           <p className="font-medium">No verification requests match these filters</p>
-        </div>
+        </EmptyState>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>

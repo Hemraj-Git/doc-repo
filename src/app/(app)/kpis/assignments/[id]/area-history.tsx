@@ -104,9 +104,9 @@ export function AreaHistory({ area, today, canDownload, scoresVisible, canCorrec
   const [correcting, setCorrecting] = useState<string | null>(null)
 
   return (
-    <section className="rounded-xl border">
-      <div className="flex flex-wrap items-start justify-between gap-3 border-b bg-muted/20 px-4 py-3">
-        <div className="min-w-0 space-y-0.5">
+    <section className="rounded-xl border bg-card">
+      <div className="flex items-start justify-between gap-6 border-b bg-muted/20 px-4 py-3">
+        <div className="min-w-0 flex-1 space-y-0.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="font-medium">{area.name}</h3>
             <Badge>{area.weightage}%</Badge>
@@ -115,7 +115,7 @@ export function AreaHistory({ area, today, canDownload, scoresVisible, canCorrec
           {area.description && <p className="text-sm whitespace-pre-line text-muted-foreground">{area.description}</p>}
         </div>
         {scoresVisible && (
-          <div className="text-right">
+          <div className="shrink-0 text-right">
             <div className="text-lg font-semibold tabular-nums">{formatScore(area.score)}</div>
             <div className="text-xs text-muted-foreground">Area score / 10</div>
           </div>
@@ -157,7 +157,7 @@ export function AreaHistory({ area, today, canDownload, scoresVisible, canCorrec
                       <Badge variant="outline" className={cn(entryStatusClass(e.status, e.dueDate, today))}>
                         {entryStatusLabel(e.status, e.dueDate, today)}
                       </Badge>
-                      {e.submittedLate && <span className="ml-1.5 text-xs text-rose-800">Late</span>}
+                      {e.submittedLate && <span className="ml-1.5 text-xs text-danger-text">Late</span>}
                     </TableCell>
                     <TableCell className="text-xs whitespace-nowrap text-muted-foreground">{formatDate(e.dueDate)}</TableCell>
                     <TableCell className="text-right text-sm tabular-nums">
@@ -178,7 +178,7 @@ export function AreaHistory({ area, today, canDownload, scoresVisible, canCorrec
                           <div className="grid gap-2 py-1">
                             {e.status === "not_applicable" && e.notApplicableReason && <p className="text-sm">Not applicable: {e.notApplicableReason}</p>}
                             {e.status === "changes_requested" && e.returnedComment && (
-                              <p className="flex gap-2 text-sm text-rose-900">
+                              <p className="flex gap-2 text-sm text-danger-text">
                                 <MessageSquareWarning className="mt-0.5 size-4 shrink-0" /> {e.returnedComment}
                               </p>
                             )}

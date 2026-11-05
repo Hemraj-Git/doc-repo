@@ -6,6 +6,7 @@ import { FilePreview } from "@/components/preview/file-preview"
 import { requireAppContext } from "@/lib/auth/session"
 import { getEvidenceFile } from "@/lib/data/kpis"
 import { FORMAT_LABELS, formatBytes, previewKind } from "@/lib/files"
+import { EmptyState } from "@/components/empty-state"
 
 export const metadata: Metadata = { title: "KPI evidence" }
 
@@ -34,11 +35,10 @@ export default async function EvidencePreviewPage({ params }: PageProps<"/kpis/e
       {kind ? (
         <FilePreview kpiFileId={file.id} fileName={file.fileName} kind={kind} />
       ) : (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-16 text-center">
-          <FileWarning className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={FileWarning}>
           <p className="font-medium">No in-browser preview for this file type</p>
           <p className="max-w-md text-sm text-muted-foreground">Download it from the KPI page to open it.</p>
-        </div>
+        </EmptyState>
       )}
     </div>
   )

@@ -19,6 +19,7 @@ import type { FolderRow } from "@/lib/data/repository"
 import { formatDate } from "@/lib/format"
 import { deleteFolder } from "./actions"
 import { FolderDialog, type FolderDialogMode, type FolderParent } from "./folder-dialog"
+import { EmptyState } from "@/components/empty-state"
 
 type Props = {
   title: string
@@ -40,7 +41,7 @@ export function FolderList({ title, folders, parent, departmentCode, canManage, 
   return (
     <section className="space-y-3">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+        <h2 className="section-heading">
           {title} <span className="tabular-nums">({folders.length})</span>
         </h2>
         {canManage && (
@@ -58,12 +59,11 @@ export function FolderList({ title, folders, parent, departmentCode, canManage, 
       </div>
 
       {folders.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-10 text-center">
-          <Folder className="mb-2 size-7 text-muted-foreground" />
+        <EmptyState icon={Folder}>
           <p className="text-sm text-muted-foreground">{emptyText}</p>
-        </div>
+        </EmptyState>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>

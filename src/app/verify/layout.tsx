@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 export default async function VerifyLayout({ children }: { children: React.ReactNode }) {
   const institute = await publicInstitute()
   return (
-    <div className="flex min-h-svh flex-col bg-muted/30">
-      <header className="border-b bg-background">
+    <div className="flex min-h-svh flex-col bg-background">
+      <header className="border-b bg-card">
         <div className="mx-auto flex max-w-4xl items-center gap-3 px-4 py-3">
           {institute.logoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element -- logo from the public branding bucket
@@ -35,7 +35,7 @@ export default async function VerifyLayout({ children }: { children: React.React
         </div>
       </header>
       <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-8">{children}</main>
-      <footer className="border-t bg-background">
+      <footer className="border-t bg-card">
         <div className="mx-auto max-w-4xl px-4 py-4 text-xs text-muted-foreground">
           {institute.address && <p className="whitespace-pre-line">{institute.address}</p>}
           {institute.contactEmail && (

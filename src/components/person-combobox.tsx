@@ -50,6 +50,7 @@ export function PersonCombobox({
       <ComboboxInput
         id={id}
         placeholder={placeholder}
+        aria-label={id ? undefined : placeholder}
         className="w-full"
         showClear={Boolean(selected) && !disabled}
         disabled={disabled}

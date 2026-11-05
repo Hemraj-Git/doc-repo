@@ -15,7 +15,7 @@ export function FormField({ name, label, errors, hint, id = name, ...inputProps 
   const invalid = Boolean(errors?.length)
 
   return (
-    <div className="grid gap-1.5">
+    <div className="grid content-start gap-1.5">
       <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}

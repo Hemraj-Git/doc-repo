@@ -37,10 +37,15 @@ export type NavGroup = { label: string; items: NavItem[] }
 
 export const NAV: NavGroup[] = [
   {
-    label: "Workspace",
+    label: "Work",
     items: [
       { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
       { title: "My Tasks", href: "/tasks", icon: ListChecks, badge: "tasks" },
+    ],
+  },
+  {
+    label: "Documents",
+    items: [
       { title: "Repository", href: "/repository", icon: FolderTree },
       { title: "My Documents", href: "/my-documents", icon: FileText },
       {
@@ -56,20 +61,25 @@ export const NAV: NavGroup[] = [
         icon: ClipboardList,
         visible: (c) => hasPerm(c, "document.create.own_dept", "document.create.any_dept"),
       },
+    ],
+  },
+  {
+    label: "People",
+    items: [
       { title: "My KPIs", href: "/my-kpis", icon: Target },
       { title: "KPIs", href: "/kpis", icon: Gauge, visible: seesKpiAdmin },
       { title: "Students", href: "/students", icon: GraduationCap, visible: seesStudents },
+    ],
+  },
+  {
+    label: "Administration",
+    items: [
       {
         title: "Audit Log",
         href: "/audit",
         icon: History,
         visible: (c) => hasPerm(c, "audit.view.own_dept", "audit.view.all"),
       },
-    ],
-  },
-  {
-    label: "Administration",
-    items: [
       {
         title: "Departments",
         href: "/admin/departments",

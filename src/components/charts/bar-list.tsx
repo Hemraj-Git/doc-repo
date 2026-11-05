@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export type BarDatum = { key: string; label: string; value: number; detail?: string; href?: string }
 
-const BAR = "#2a78d6" // categorical slot 1 (validated palette)
+const BAR = "var(--chart-1)"
 
 /**
  * Horizontal single-series bar list: one hue, value at the bar tip, hover/focus

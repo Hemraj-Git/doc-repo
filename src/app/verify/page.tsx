@@ -15,7 +15,7 @@ export default function VerifyPage() {
       {siteKey ? (
         <VerifyForm siteKey={siteKey} />
       ) : (
-        <p className="rounded-lg border border-amber-600/30 bg-amber-50 p-4 text-sm text-amber-900">
+        <p className="rounded-lg border border-warning-line bg-warning-soft p-4 text-sm text-warning-text">
           Verification is not available right now. Please contact the institute.
         </p>
       )}

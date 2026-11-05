@@ -103,7 +103,7 @@ export function UploadPanel({ documentId, status, nextVersion, requiresReview, c
       </CardHeader>
       <CardContent className="grid gap-3">
         {changeRequest && (
-          <div className="flex gap-2 rounded-lg border border-rose-600/20 bg-rose-50 p-3 text-sm text-rose-900">
+          <div className="flex gap-2 rounded-lg border border-danger-line bg-danger-soft p-3 text-sm text-danger-text">
             <MessageSquareWarning className="mt-0.5 size-4 shrink-0" />
             <div>
               <div className="font-medium">{changeRequest.reviewer} requested changes</div>

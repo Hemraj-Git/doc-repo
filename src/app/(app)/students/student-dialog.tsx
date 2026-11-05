@@ -124,7 +124,7 @@ export function StudentDialog({ open, onOpenChange, student, departments, folder
 
   const section = (title: string, children: React.ReactNode) => (
     <fieldset className="grid gap-3 sm:grid-cols-2">
-      <legend className="mb-1 text-xs font-medium tracking-wide text-muted-foreground uppercase">{title}</legend>
+      <legend className="mb-1 section-label">{title}</legend>
       {children}
     </fieldset>
   )

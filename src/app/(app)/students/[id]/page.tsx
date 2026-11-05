@@ -101,7 +101,7 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
 
         <TabsContent value="details" className="pt-4">
           <div className="grid gap-6 lg:grid-cols-2">
-            <section className="rounded-xl border p-4">
+            <section className="rounded-xl border bg-card p-4">
               <h2 className="mb-3 text-sm font-medium">Identity</h2>
               <dl className="grid grid-cols-2 gap-3">
                 <Detail label="Full name" value={student.fullName} />
@@ -112,7 +112,7 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
                 <Detail label="Nationality" value={student.nationality} />
               </dl>
             </section>
-            <section className="rounded-xl border p-4">
+            <section className="rounded-xl border bg-card p-4">
               <h2 className="mb-3 text-sm font-medium">Course</h2>
               <dl className="grid grid-cols-2 gap-3">
                 <Detail label="Course / Program" value={student.courseName} />
@@ -124,7 +124,7 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
                 <Detail label="Final result / CGPA" value={student.finalResult} />
               </dl>
             </section>
-            <section className="rounded-xl border p-4">
+            <section className="rounded-xl border bg-card p-4">
               <h2 className="mb-3 text-sm font-medium">Maritime IDs</h2>
               <dl className="grid grid-cols-2 gap-3">
                 <Detail label="INDoS No." value={student.indosNo} />
@@ -134,7 +134,7 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
                 <Detail label="Sponsoring company" value={student.sponsor} />
               </dl>
             </section>
-            <section className="rounded-xl border p-4">
+            <section className="rounded-xl border bg-card p-4">
               <h2 className="mb-3 text-sm font-medium">Contact</h2>
               <dl className="grid grid-cols-2 gap-3">
                 <Detail label="Email" value={student.email} />
@@ -156,7 +156,7 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
           {student.programFolder ? (
             <Link
               href={`/repository/${student.programFolder.departmentCode}/${student.programFolder.id}`}
-              className="flex w-fit items-center gap-3 rounded-xl border p-4 hover:bg-muted/40"
+              className="flex w-fit items-center gap-3 rounded-xl border bg-card p-4 hover:bg-muted/40"
             >
               <FolderOpen className="size-5 text-primary" />
               <span>
@@ -178,7 +178,7 @@ export default async function StudentPage({ params }: PageProps<"/students/[id]"
           {verifications.length === 0 ? (
             <p className="text-sm text-muted-foreground">No one has verified this student yet.</p>
           ) : (
-            <div className="rounded-xl border">
+            <div className="rounded-xl border bg-card">
               <Table>
                 <TableHeader>
                   <TableRow>

@@ -24,12 +24,12 @@ type Props = {
 const KIND_ORDER = ["weekly", "monthly", "quarterly", "semester", "half_yearly", "academic_year"] as const
 
 const CELL: Record<DocumentStatus | "overdue", { className: string; mark: string; label: string }> = {
-  approved: { className: "bg-emerald-500 text-white", mark: "✓", label: STATUS_LABELS.approved },
-  in_review: { className: "bg-sky-400 text-white", mark: "…", label: STATUS_LABELS.in_review },
-  pending_upload: { className: "bg-amber-100 text-amber-900 ring-1 ring-amber-300 ring-inset", mark: "", label: STATUS_LABELS.pending_upload },
-  changes_requested: { className: "bg-rose-200 text-rose-900", mark: "↺", label: STATUS_LABELS.changes_requested },
+  approved: { className: "bg-success text-white", mark: "✓", label: STATUS_LABELS.approved },
+  in_review: { className: "bg-info text-white", mark: "…", label: STATUS_LABELS.in_review },
+  pending_upload: { className: "bg-warning-soft text-warning-text ring-1 ring-warning-line ring-inset", mark: "", label: STATUS_LABELS.pending_upload },
+  changes_requested: { className: "bg-danger-soft text-danger-text ring-1 ring-danger-line ring-inset", mark: "↺", label: STATUS_LABELS.changes_requested },
   not_applicable: { className: "bg-muted text-muted-foreground", mark: "–", label: STATUS_LABELS.not_applicable },
-  overdue: { className: "bg-rose-600 text-white", mark: "!", label: "Overdue" },
+  overdue: { className: "bg-danger text-white", mark: "!", label: "Overdue" },
 }
 
 /** Grid of every recurring file × period, coloured by status. `view` decides how it is divided. */
@@ -105,13 +105,13 @@ export function ProgramTracker({ series, view, startMonth, today, periodWord = "
         </div>
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-muted">
-        <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${percent}%` }} />
+        <div className="h-full rounded-full bg-success" style={{ width: `${percent}%` }} />
       </div>
 
       {groups.map((g) => (
         <div key={g.kind} className="space-y-1.5">
-          <h3 className="text-xs font-medium tracking-wide text-muted-foreground uppercase">{kindLabels?.[g.kind] ?? RECURRENCE_LABELS[g.kind]}</h3>
-          <div className="overflow-x-auto rounded-xl border">
+          <h3 className="section-label">{kindLabels?.[g.kind] ?? RECURRENCE_LABELS[g.kind]}</h3>
+          <div className="overflow-x-auto rounded-xl border bg-card">
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b bg-muted/30">

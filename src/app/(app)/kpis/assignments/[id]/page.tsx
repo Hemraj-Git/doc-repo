@@ -28,7 +28,7 @@ function ScorePanel({ a, today }: { a: AssignmentDetail; today: string }) {
   const final = s.finalScore !== null
   const periodOver = a.status === "ended" || a.endDate < today
   return (
-    <section className="grid gap-4 rounded-xl border p-4 md:grid-cols-[16rem_1fr]">
+    <section className="grid grid-cols-1 gap-4 rounded-xl border bg-card p-4 md:grid-cols-[16rem_minmax(0,1fr)]">
       <div className="space-y-1">
         <h2 className="text-sm font-medium" title={final ? undefined : PROJECTED_SCORE_HINT}>
           {final ? "Final Score" : "Projected Score"}
@@ -46,7 +46,7 @@ function ScorePanel({ a, today }: { a: AssignmentDetail; today: string }) {
           {final ? (
             <>Generated {s.finalGeneratedAt ? formatDateTime(s.finalGeneratedAt) : ""}</>
           ) : periodOver && s.undecided > 0 ? (
-            <span className="font-medium text-amber-700">
+            <span className="font-medium text-warning-text">
               Final Score waiting on {s.undecided} {s.undecided === 1 ? "period" : "periods"}
             </span>
           ) : (
@@ -57,11 +57,8 @@ function ScorePanel({ a, today }: { a: AssignmentDetail; today: string }) {
           {s.scored} of {s.total - s.notApplicable} periods scored
           {s.notApplicable > 0 && ` · ${s.notApplicable} not applicable`}
         </p>
-        <p className="pt-1 text-xs text-muted-foreground">
-          Final rating: {KPI_RATING_BANDS.map((b) => `${b.range} ${b.label}`).join("; ")}.
-        </p>
       </div>
-      <div className="grid gap-2 sm:grid-cols-2">
+      <div className="grid min-w-0 grid-cols-1 content-start gap-2 sm:grid-cols-2">
         {a.areas
           .filter((ar) => ar.recurrence)
           .map((ar) => (
@@ -76,6 +73,14 @@ function ScorePanel({ a, today }: { a: AssignmentDetail; today: string }) {
               </span>
             </div>
           ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-1.5 border-t pt-3 text-xs text-muted-foreground md:col-span-2">
+        <span className="mr-1">Final rating</span>
+        {KPI_RATING_BANDS.map((b) => (
+          <Badge key={b.label} variant="outline" className={b.className}>
+            {b.range} {b.label}
+          </Badge>
+        ))}
       </div>
     </section>
   )
@@ -183,7 +188,7 @@ export default async function AssignmentPage({ params }: PageProps<"/kpis/assign
       )}
 
       {!legacy && !a.scorer && !mine && (
-        <p className="flex gap-2 rounded-xl border border-amber-600/30 bg-amber-50 p-4 text-sm text-amber-900">
+        <p className="flex gap-2 rounded-xl border border-warning-line bg-warning-soft p-4 text-sm text-warning-text">
           <AlertTriangle className="mt-0.5 size-4 shrink-0" />
           <span>
             <span className="font-medium">No scorer set.</span> Approved periods wait here until someone is chosen.{isHr && " Use Set scorer above."}
@@ -195,7 +200,7 @@ export default async function AssignmentPage({ params }: PageProps<"/kpis/assign
         (scoresVisible ? (
           <ScorePanel a={a} today={today} />
         ) : (
-          <section className="flex flex-wrap items-center gap-3 rounded-xl border p-4 text-sm">
+          <section className="flex flex-wrap items-center gap-3 rounded-xl border bg-card p-4 text-sm">
             <EyeOff className="size-5 text-muted-foreground" />
             <span className="min-w-0 flex-1">
               <span className="block font-medium">Your scores have not been released yet</span>
@@ -214,7 +219,7 @@ export default async function AssignmentPage({ params }: PageProps<"/kpis/assign
 
       {toReview.length > 0 && (
         <section className="space-y-3">
-          <h2 className="flex items-center gap-2 text-sm font-medium tracking-wide text-muted-foreground uppercase">
+          <h2 className="flex items-center gap-2 section-heading">
             <ListChecks className="size-4" /> To review <span className="tabular-nums">({toReview.length})</span>
           </h2>
           <ul className="grid gap-3">
@@ -227,7 +232,7 @@ export default async function AssignmentPage({ params }: PageProps<"/kpis/assign
 
       {toScore.length > 0 && (
         <section className="space-y-3">
-          <h2 className="flex items-center gap-2 text-sm font-medium tracking-wide text-muted-foreground uppercase">
+          <h2 className="flex items-center gap-2 section-heading">
             <ClipboardCheck className="size-4" /> To score <span className="tabular-nums">({toScore.length})</span>
           </h2>
           <ul className="grid gap-3">
@@ -242,8 +247,8 @@ export default async function AssignmentPage({ params }: PageProps<"/kpis/assign
 
       {!legacy && (
         <section className="space-y-3">
-          <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">History by area</h2>
-          <div className="grid gap-4">
+          <h2 className="section-heading">History by area</h2>
+          <div className="grid grid-cols-1 gap-4">
             {areas.map((ar) => (
               <AreaHistory key={ar.id} area={ar} today={today} canDownload={canDownload} scoresVisible={scoresVisible} canCorrect={canCorrect} canDecide={canDecide} />
             ))}

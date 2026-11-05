@@ -32,7 +32,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </div>
         <p className="text-sm text-primary-foreground/60">Academic · HR · Student Records · Quality &amp; Compliance</p>
       </aside>
-      <main className="flex items-center justify-center p-6 sm:p-10">
+      <main className="flex items-center justify-center bg-card p-6 sm:p-10">
         <div className="w-full max-w-sm">
           <div className="mb-8 flex items-center gap-2 font-semibold lg:hidden">
             <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">

@@ -15,7 +15,7 @@ function Meter({ label, value }: { label: string; value: Compliance }) {
         </span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-muted">
-        <div className="h-full rounded-full bg-emerald-500" style={{ width: `${percent}%` }} />
+        <div className="h-full rounded-full bg-success" style={{ width: `${percent}%` }} />
       </div>
     </div>
   )
@@ -37,7 +37,7 @@ export function SchedulerHealth({ run, stale }: { run: SchedulerRun | null; stal
   const ok = run && !stale && run.errorCount === 0
   return (
     <div className="space-y-2 text-sm">
-      <p className={`flex items-center gap-1.5 font-medium ${ok ? "text-emerald-700" : "text-amber-700"}`}>
+      <p className={`flex items-center gap-1.5 font-medium ${ok ? "text-success-text" : "text-warning-text"}`}>
         {ok ? <CheckCircle2 className="size-4" /> : <AlertTriangle className="size-4" />}
         {!run ? "Not run yet" : stale ? "Missed its daily run" : run.errorCount ? `${run.errorCount} series failed` : "Running normally"}
       </p>

@@ -78,7 +78,7 @@ export function VerifyForm({ siteKey }: { siteKey: string }) {
       <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onReady={renderWidget} />
       {result && <ResultCard result={result} onReset={() => setResult(null)} />}
 
-      <form onSubmit={submit} noValidate className={result ? "hidden" : "grid gap-6 rounded-xl border bg-background p-4 md:p-6"}>
+      <form onSubmit={submit} noValidate className={result ? "hidden" : "grid gap-6 rounded-xl border bg-card p-4 md:p-6"}>
         <fieldset className="grid gap-4 sm:grid-cols-2">
           <legend className="mb-2 text-sm font-medium">Student</legend>
           <Field id="v-regd" label="Regd No." error={errors.regdNo}>
@@ -152,9 +152,9 @@ function ResultCard({ result, onReset }: { result: VerificationResult; onReset: 
       captcha_failed: { icon: ShieldAlert, title: "Security check failed", body: "Complete the security check and try again." },
     }[result.outcome]
     return (
-      <section className="mb-6 grid gap-4 rounded-xl border bg-background p-6">
+      <section className="mb-6 grid gap-4 rounded-xl border bg-card p-6">
         <div className="flex items-start gap-3">
-          <copy.icon className="mt-0.5 size-6 shrink-0 text-amber-600" />
+          <copy.icon className="mt-0.5 size-6 shrink-0 text-warning-text" />
           <div>
             <h2 className="font-semibold">{copy.title}</h2>
             <p className="text-sm text-muted-foreground">{copy.body}</p>
@@ -170,10 +170,10 @@ function ResultCard({ result, onReset }: { result: VerificationResult; onReset: 
   const asked = s.certificate_query
   const highlighted = s.certificates.find((c) => c.highlight)
   return (
-    <section className="mb-6 grid gap-5 rounded-xl border border-emerald-600/30 bg-background p-6">
+    <section className="mb-6 grid gap-5 rounded-xl border border-success-line bg-card p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex items-start gap-3">
-          <CheckCircle2 className="mt-0.5 size-6 shrink-0 text-emerald-600" />
+          <CheckCircle2 className="mt-0.5 size-6 shrink-0 text-success-text" />
           <div>
             <h2 className="font-semibold">Record found</h2>
             <p className="text-sm text-muted-foreground">
@@ -190,16 +190,16 @@ function ResultCard({ result, onReset }: { result: VerificationResult; onReset: 
       </div>
 
       {asked && (
-        <div className={`rounded-lg border p-3 text-sm ${highlighted?.status === "issued" ? "border-emerald-600/30 bg-emerald-50" : "border-rose-600/30 bg-rose-50"}`}>
+        <div className={`rounded-lg border p-3 text-sm ${highlighted?.status === "issued" ? "border-success-line bg-success-soft" : "border-danger-line bg-danger-soft"}`}>
           {highlighted ? (
             <span className="flex flex-wrap items-center gap-2">
-              {highlighted.status === "issued" ? <CheckCircle2 className="size-4 text-emerald-700" /> : <XCircle className="size-4 text-rose-700" />}
+              {highlighted.status === "issued" ? <CheckCircle2 className="size-4 text-success-text" /> : <XCircle className="size-4 text-danger-text" />}
               Certificate <span className="font-mono">{highlighted.certificate_no}</span> ({highlighted.type}):
               <CertificateStatusBadge c={highlighted} />
             </span>
           ) : (
             <span className="flex items-center gap-2">
-              <XCircle className="size-4 text-rose-700" /> Certificate <span className="font-mono">{asked}</span> is not on record for this student.
+              <XCircle className="size-4 text-danger-text" /> Certificate <span className="font-mono">{asked}</span> is not on record for this student.
             </span>
           )}
         </div>

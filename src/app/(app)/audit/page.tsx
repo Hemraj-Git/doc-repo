@@ -12,6 +12,7 @@ import { buildLookups, listAudit, parseAuditFilters } from "@/lib/data/audit"
 import { listDepartments, listPeoplePicker } from "@/lib/data/org"
 import { formatDateTime } from "@/lib/format"
 import { AuditToolbar } from "./audit-toolbar"
+import { EmptyState } from "@/components/empty-state"
 
 export const metadata: Metadata = { title: "Audit Log" }
 
@@ -52,12 +53,11 @@ export default async function AuditPage({ searchParams }: PageProps<"/audit">) {
       <AuditToolbar departments={departments?.map((d) => ({ value: d.id, label: d.name })) ?? null} people={people} />
 
       {described.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <History className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={History}>
           <p className="font-medium">No activity matches these filters</p>
-        </div>
+        </EmptyState>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>

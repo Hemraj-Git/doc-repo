@@ -150,7 +150,7 @@ export function TemplateBuilder({ templateId, tree, nodes, usedAsSlot, documentT
   return (
     <section className="space-y-3">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">Structure</h2>
+        <h2 className="section-heading">Structure</h2>
         {addMenu(null)}
       </div>
       <div className="rounded-xl border bg-card p-2">

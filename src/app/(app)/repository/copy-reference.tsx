@@ -17,7 +17,7 @@ export function CopyReference({ value }: { value: string }) {
       title="Copy Reference ID"
     >
       {value}
-      {copied ? <Check className="size-3 text-emerald-600" /> : <Copy className="size-3 text-muted-foreground" />}
+      {copied ? <Check className="size-3 text-success-text" /> : <Copy className="size-3 text-muted-foreground" />}
     </button>
   )
 }

@@ -44,7 +44,7 @@ function NodeCard({ node, orphan, viewDepartmentId }: { node: OrgNode; orphan?: 
             </span>
           )}
           {orphan && (
-            <span className="flex items-center gap-1 text-amber-700">
+            <span className="flex items-center gap-1 text-warning-text">
               <TriangleAlert className="size-3" /> No reporting manager
             </span>
           )}

@@ -20,7 +20,7 @@ export default async function SharedPage({ searchParams }: PageProps<"/shared">)
       <PageHeader title="Shared with me" description="Folders you have been given access to, and documents from other departments that involve you." />
 
       <section className="space-y-3">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+        <h2 className="section-heading">
           Shared folders <span className="tabular-nums">({folders.length})</span>
         </h2>
         {folders.length === 0 ? (
@@ -47,7 +47,7 @@ export default async function SharedPage({ searchParams }: PageProps<"/shared">)
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">Documents from other departments</h2>
+        <h2 className="section-heading">Documents from other departments</h2>
         <DocumentsTable
           documents={rows}
           columns={["department", "uploader", "version", "updated"]}

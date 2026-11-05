@@ -42,7 +42,7 @@ export function DocumentTypesTable({ types }: { types: DocumentTypeRow[] }) {
           <Plus /> New document type
         </Button>
       </div>
-      <div className="rounded-xl border">
+      <div className="rounded-xl border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

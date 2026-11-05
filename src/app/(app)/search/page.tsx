@@ -8,6 +8,7 @@ import { searchDocuments, searchFolders, type SearchFilters as Filters } from "@
 import { listDocumentTypes, listRepositoryDepartments } from "@/lib/data/repository"
 import { STATUS_LABELS } from "@/lib/documents"
 import { SearchFilters } from "./search-filters"
+import { EmptyState } from "@/components/empty-state"
 
 export const metadata: Metadata = { title: "Search" }
 
@@ -50,16 +51,15 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
       {!searchable ? (
         <p className="text-sm text-muted-foreground">Type at least 2 characters in the search box above, or choose a filter.</p>
       ) : documents.length === 0 && folders.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <SearchX className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={SearchX}>
           <p className="font-medium">Nothing found</p>
           <p className="text-sm text-muted-foreground">Try part of the name or Reference ID, or remove a filter.</p>
-        </div>
+        </EmptyState>
       ) : (
         <>
           {folders.length > 0 && (
             <section className="space-y-3">
-              <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+              <h2 className="section-heading">
                 Folders <span className="tabular-nums">({folders.length})</span>
               </h2>
               <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
@@ -83,7 +83,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
             </section>
           )}
           <section className="space-y-3">
-            <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+            <h2 className="section-heading">
               Documents <span className="tabular-nums">({documents.length})</span>
             </h2>
             <DocumentsTable

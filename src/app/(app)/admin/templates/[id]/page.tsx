@@ -100,7 +100,7 @@ export default async function TemplatePage({ params }: PageProps<"/admin/templat
         </div>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
         <TemplateBuilder
           templateId={template.id}
           tree={tree}

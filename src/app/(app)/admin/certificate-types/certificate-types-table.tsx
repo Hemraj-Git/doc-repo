@@ -28,7 +28,7 @@ export function CertificateTypesTable({ types }: { types: CertificateType[] }) {
           <Plus /> New certificate type
         </Button>
       </div>
-      <div className="rounded-xl border">
+      <div className="rounded-xl border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

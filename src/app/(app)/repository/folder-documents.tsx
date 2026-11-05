@@ -47,7 +47,7 @@ export function FolderDocuments({ folder, documents, canCreate, canUpload, docum
   return (
     <section className="space-y-3">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+        <h2 className="section-heading">
           {title} <span className="tabular-nums">({documents.length})</span>
         </h2>
         <div className="flex flex-wrap items-center gap-2">

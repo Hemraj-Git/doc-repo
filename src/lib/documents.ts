@@ -12,10 +12,10 @@ export const STATUS_LABELS: Record<DocumentStatus, string> = {
 }
 
 export const STATUS_STYLES: Record<DocumentStatus, string> = {
-  pending_upload: "border-amber-600/30 bg-amber-50 text-amber-800",
-  in_review: "border-sky-600/30 bg-sky-50 text-sky-800",
-  changes_requested: "border-rose-600/30 bg-rose-50 text-rose-800",
-  approved: "border-emerald-600/30 bg-emerald-50 text-emerald-800",
+  pending_upload: "border-warning-line bg-warning-soft text-warning-text",
+  in_review: "border-info-line bg-info-soft text-info-text",
+  changes_requested: "border-danger-line bg-danger-soft text-danger-text",
+  approved: "border-success-line bg-success-soft text-success-text",
   not_applicable: "border-border bg-muted text-muted-foreground",
 }
 

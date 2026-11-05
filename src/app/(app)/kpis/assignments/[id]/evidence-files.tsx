@@ -216,7 +216,7 @@ function RepositoryPicker({ entryId, attachedIds, room, onClose }: { entryId: st
                 </span>
               </span>
               {attached.has(d.id) ? (
-                <span className="flex items-center gap-1 px-2 text-sm text-emerald-700">
+                <span className="flex items-center gap-1 px-2 text-sm text-success-text">
                   <Check className="size-4" /> Attached
                 </span>
               ) : (

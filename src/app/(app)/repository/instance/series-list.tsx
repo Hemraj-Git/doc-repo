@@ -59,10 +59,10 @@ export function SeriesList({ series, departmentCode, canManage, people }: Props)
 
   return (
     <section className="space-y-3">
-      <h2 className="flex items-center gap-2 text-sm font-medium tracking-wide text-muted-foreground uppercase">
+      <h2 className="flex items-center gap-2 section-heading">
         <Repeat className="size-4" /> Recurring files <span className="tabular-nums">({series.length})</span>
       </h2>
-      <div className="rounded-xl border">
+      <div className="rounded-xl border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

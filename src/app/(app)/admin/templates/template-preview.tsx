@@ -68,7 +68,7 @@ export function TemplatePreview({ instanceLabel, tree, slotNodes, templates }: P
 
   return (
     <section className="space-y-3">
-      <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">Preview</h2>
+      <h2 className="section-heading">Preview</h2>
       <div className="rounded-xl border bg-muted/20 p-4 text-sm">
         <span className="flex items-center gap-1.5 font-medium">
           <FolderTree className="size-4 text-primary" />

@@ -194,7 +194,7 @@ export function Wizard({ departmentCode, parent, bundle, people, today, initial 
                         setEntry(emptyEntry(entry.name))
                       }}
                       className={cn(
-                        "flex gap-3 rounded-xl border p-4 text-left transition-colors hover:border-primary/40",
+                        "flex gap-3 rounded-xl border bg-card p-4 text-left transition-colors hover:border-primary/40",
                         templateId === id && "border-primary bg-primary/5 ring-2 ring-primary/20"
                       )}
                     >
@@ -203,7 +203,7 @@ export function Wizard({ departmentCode, parent, bundle, people, today, initial 
                         <span className="block font-medium">{t.name}</span>
                         {t.description && <span className="block text-sm text-muted-foreground">{t.description}</span>}
                         <span className="mt-1 block text-xs text-muted-foreground">
-                          {s.folders - 1} folders · {s.once} one-time · {s.series} recurring
+                          {s.folders - 1} {s.folders - 1 === 1 ? "folder" : "folders"} · {s.once} one-time · {s.series} recurring
                           {slotsOf(bundle, id).length ? ` · repeats ${slotsOf(bundle, id).map((x) => x.node.name).join(", ")}` : ""}
                         </span>
                       </span>

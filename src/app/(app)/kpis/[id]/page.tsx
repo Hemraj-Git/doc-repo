@@ -53,7 +53,7 @@ export default async function KpiPage({ params }: PageProps<"/kpis/[id]">) {
               <StatusBadge active={kpi.isActive} />
             </div>
             <p className="text-sm text-muted-foreground">
-              {kpi.designation ? `For ${kpi.designation} · ` : ""}Year starts in {MONTHS[kpi.yearStartMonth - 1]} · reviewer: {reviewer} · scorer: {scorer ?? <span className="font-medium text-amber-700">not set</span>} · submit within {kpi.dueDays} days of each period ending · edited{" "}
+              {kpi.designation ? `For ${kpi.designation} · ` : ""}Year starts in {MONTHS[kpi.yearStartMonth - 1]} · reviewer: {reviewer} · scorer: {scorer ?? <span className="font-medium text-warning-text">not set</span>} · submit within {kpi.dueDays} days of each period ending · edited{" "}
               {formatDateTime(kpi.updatedAt)}
             </p>
             {kpi.description && <p className="max-w-3xl text-sm whitespace-pre-line">{kpi.description}</p>}

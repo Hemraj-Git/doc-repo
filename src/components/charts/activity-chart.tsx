@@ -4,13 +4,12 @@ import { useEffect, useMemo, useRef, useState } from "react"
 
 export type ActivityPoint = { day: string; uploads: number; approvals: number }
 
-// Validated categorical slots 1 and 2 (adjacent CVD ΔE 24.7, all checks pass on light).
 const SERIES = [
-  { key: "uploads", label: "Uploads", color: "#2a78d6" },
-  { key: "approvals", label: "Approvals", color: "#eb6834" },
+  { key: "uploads", label: "Uploads", color: "var(--chart-1)" },
+  { key: "approvals", label: "Approvals", color: "var(--chart-4)" },
 ] as const
 
-const INK = { grid: "#e1e0d9", axis: "#c3c2b7", muted: "#898781", surface: "#ffffff" }
+const INK = { grid: "var(--border)", axis: "var(--input)", muted: "var(--muted-foreground)", surface: "var(--card)" }
 const M = { top: 12, right: 92, bottom: 24, left: 30 }
 const HEIGHT = 200
 
@@ -57,7 +56,8 @@ export function ActivityChart({ data }: { data: ActivityPoint[] }) {
   const last = data[data.length - 1]
   const endY = last ? SERIES.map((s) => y(last[s.key])) : []
   const endLabelsFit = endY.length === 2 && Math.abs(endY[0]! - endY[1]!) >= 14
-  const xTicks = data.map((_, i) => i).filter((i) => i === 0 || i === data.length - 1 || (data.length - 1 - i) % 7 === 0)
+  // Weekly back from today. The first day only gets a label if it won't collide with the next one.
+  const xTicks = data.map((_, i) => i).filter((i) => (data.length - 1 - i) % 7 === 0 || (i === 0 && (data.length - 1) % 7 >= 4))
   const yTicks = [0, max / 2, max]
 
   const pick = (clientX: number) => {

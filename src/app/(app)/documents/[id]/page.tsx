@@ -32,9 +32,9 @@ export async function generateMetadata({ params }: PageProps<"/documents/[id]">)
 
 const STATE_STYLES: Record<ReviewStepRow["state"], string> = {
   waiting: "text-muted-foreground",
-  active: "border-sky-600/30 bg-sky-50 text-sky-800",
-  approved: "border-emerald-600/30 bg-emerald-50 text-emerald-800",
-  rejected: "border-rose-600/30 bg-rose-50 text-rose-800",
+  active: "border-info-line bg-info-soft text-info-text",
+  approved: "border-success-line bg-success-soft text-success-text",
+  rejected: "border-danger-line bg-danger-soft text-danger-text",
   skipped: "text-muted-foreground",
 }
 
@@ -226,7 +226,7 @@ export default async function DocumentPage({ params }: PageProps<"/documents/[id
               {doc.versions.length === 0 ? (
                 <p className="text-sm text-muted-foreground">No versions yet.</p>
               ) : (
-                <div className="rounded-xl border">
+                <div className="rounded-xl border bg-card">
                   <Table>
                     <TableHeader>
                       <TableRow>
@@ -279,7 +279,7 @@ export default async function DocumentPage({ params }: PageProps<"/documents/[id
                   {rounds.map((round) => {
                     const steps = doc.steps.filter((s) => s.round === round)
                     return (
-                      <div key={round} className="rounded-xl border p-3">
+                      <div key={round} className="rounded-xl border bg-card p-3">
                         <div className="mb-2 text-sm font-medium">
                           Round {round} <span className="font-normal text-muted-foreground">· version {steps[0]?.versionNo}</span>
                         </div>

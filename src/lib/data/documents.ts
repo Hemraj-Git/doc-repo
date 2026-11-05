@@ -145,7 +145,7 @@ async function paged(build: (q: ReturnType<typeof base>) => unknown, what: strin
 /** my_documents() / shared_documents(): RLS-checked document sets too large to pass as id lists. */
 async function pagedRpc(fn: "my_documents" | "shared_documents", what: string, limit?: number) {
   const supabase = await createClient()
-  const q = supabase.rpc(fn).select(LIST_COLUMNS).order("updated_at", { ascending: false })
+  const q = supabase.rpc(fn).select(LIST_COLUMNS).order("updated_at", { ascending: false }).order("due_date", { ascending: true, nullsFirst: false }).order("name")
   const { data, error } = await (limit ? q.limit(limit + 1) : q)
   if (error) throw new Error(`Could not load ${what}: ${error.message}`)
   return toPage(((data ?? []) as unknown as ListDb[]).map(toListRow), limit)
@@ -159,13 +159,13 @@ export function listMyDocuments(limit?: number) {
 /** HOD: every document in the department. Senior: documents assigned to people below them. */
 export async function listTeamDocuments(ctx: AppContext, limit?: number): Promise<Page<DocumentListRow>> {
   if (ctx.isHod) {
-    return paged((q) => q.eq("department_id", ctx.department.id).order("updated_at", { ascending: false }), "team documents", limit)
+    return paged((q) => q.eq("department_id", ctx.department.id).order("updated_at", { ascending: false }).order("due_date", { ascending: true, nullsFirst: false }).order("name"), "team documents", limit)
   }
   const supabase = await createClient()
   const { data } = await supabase.rpc("my_subordinate_ids")
   const ids = ((data ?? []) as string[]).filter(Boolean)
   if (ids.length === 0) return { rows: [], hasMore: false }
-  return paged((q) => q.in("assigned_uploader_id", ids).order("updated_at", { ascending: false }), "team documents", limit)
+  return paged((q) => q.in("assigned_uploader_id", ids).order("updated_at", { ascending: false }).order("due_date", { ascending: true, nullsFirst: false }).order("name"), "team documents", limit)
 }
 
 /** Documents of other departments where the user uploads or reviews. */

@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge"
 
 export function StatusBadge({ active }: { active: boolean }) {
   return active ? (
-    <Badge variant="outline" className="border-emerald-600/30 bg-emerald-50 text-emerald-700">
+    <Badge variant="outline" className="border-success-line bg-success-soft text-success-text">
       Active
     </Badge>
   ) : (

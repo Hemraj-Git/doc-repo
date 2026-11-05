@@ -37,11 +37,11 @@ export const SCORE_VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const
 
 /** For display. kpi_score_rating() in the database decides the rating. */
 export const KPI_RATING_BANDS = [
-  { range: "85–100", label: "Outstanding", className: "border-emerald-600/30 bg-emerald-50 text-emerald-800" },
-  { range: "75–84", label: "Very Good", className: "border-teal-600/30 bg-teal-50 text-teal-800" },
-  { range: "65–74", label: "Satisfactory", className: "border-sky-600/30 bg-sky-50 text-sky-800" },
-  { range: "50–64", label: "Improvement Required", className: "border-amber-600/30 bg-amber-50 text-amber-800" },
-  { range: "Below 50", label: "Unsatisfactory", className: "border-rose-600/30 bg-rose-50 text-rose-800" },
+  { range: "85–100", label: "Outstanding", className: "border-success-line bg-success-soft text-success-text" },
+  { range: "75–84", label: "Very Good", className: "border-positive-line bg-positive-soft text-positive-text" },
+  { range: "65–74", label: "Satisfactory", className: "border-info-line bg-info-soft text-info-text" },
+  { range: "50–64", label: "Improvement Required", className: "border-warning-line bg-warning-soft text-warning-text" },
+  { range: "Below 50", label: "Unsatisfactory", className: "border-danger-line bg-danger-soft text-danger-text" },
 ] as const
 
 export const ratingClass = (rating: string | null | undefined) => KPI_RATING_BANDS.find((b) => b.label === rating)?.className ?? ""
@@ -105,11 +105,11 @@ export function entryStatusLabel(status: KpiEntryStatus, dueDate: string, today:
 
 export function entryStatusClass(status: KpiEntryStatus, dueDate: string, today: string) {
   if (status === "open" || status === "changes_requested") {
-    if (dueDate < today) return "border-rose-600/30 bg-rose-50 text-rose-800"
-    return status === "open" ? "border-amber-600/30 bg-amber-50 text-amber-800" : "border-rose-600/30 bg-rose-50 text-rose-800"
+    if (dueDate < today) return "border-danger-line bg-danger-soft text-danger-text"
+    return status === "open" ? "border-warning-line bg-warning-soft text-warning-text" : "border-danger-line bg-danger-soft text-danger-text"
   }
-  if (status === "submitted") return "border-sky-600/30 bg-sky-50 text-sky-800"
-  if (status === "approved") return "border-indigo-600/30 bg-indigo-50 text-indigo-800"
-  if (status === "scored") return "border-emerald-600/30 bg-emerald-50 text-emerald-800"
+  if (status === "submitted") return "border-info-line bg-info-soft text-info-text"
+  if (status === "approved") return "border-kpi-line bg-kpi-soft text-kpi-text"
+  if (status === "scored") return "border-success-line bg-success-soft text-success-text"
   return "text-muted-foreground"
 }

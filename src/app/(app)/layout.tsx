@@ -17,6 +17,12 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <SidebarProvider defaultOpen={sidebarOpen}>
+      <a
+        href="#main"
+        className="sr-only z-50 rounded-lg bg-primary px-3 py-2 text-sm font-medium text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+      >
+        Skip to main content
+      </a>
       <AppSidebar
         appName={APP_NAME}
         department={ctx.department}
@@ -30,7 +36,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           notifications={notifications}
           unreadNotifications={counts.unreadNotifications}
         />
-        <div className="flex-1 p-4 md:p-6">{children}</div>
+        <div id="main" tabIndex={-1} className="mx-auto w-full max-w-[1440px] flex-1 p-4 outline-none md:p-6">
+          {children}
+        </div>
       </SidebarInset>
     </SidebarProvider>
   )

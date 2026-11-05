@@ -13,6 +13,7 @@ import { listPeoplePicker } from "@/lib/data/org"
 import { formatDate } from "@/lib/format"
 import { MONTHS } from "@/lib/validation/settings"
 import { KpiDetailsDialog } from "./kpi-details-dialog"
+import { EmptyState } from "@/components/empty-state"
 
 export const metadata: Metadata = { title: "KPIs" }
 
@@ -48,15 +49,14 @@ export default async function KpisPage() {
       />
 
       {kpis.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <Gauge className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={Gauge}>
           <p className="font-medium">No KPIs yet</p>
           <p className="max-w-md text-sm text-muted-foreground">
             Create one per role (e.g. “Faculty KPI”), add its areas, activate it, then assign it to everyone in that role.
           </p>
-        </div>
+        </EmptyState>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>
@@ -84,7 +84,7 @@ export default async function KpisPage() {
                     {k.totalWeightage === 100 ? (
                       <Badge variant="secondary">100%</Badge>
                     ) : (
-                      <span className="flex items-center gap-1 text-xs text-amber-700">
+                      <span className="flex items-center gap-1 text-xs text-warning-text">
                         <AlertTriangle className="size-3.5" /> {k.totalWeightage}%
                       </span>
                     )}

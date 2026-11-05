@@ -94,7 +94,7 @@ export function AssignForm({ kpis, initialKpiId, people, reviewers, activeAssign
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
       <div className="grid gap-6">
-        <section className="grid gap-4 rounded-xl border p-4 sm:grid-cols-3">
+        <section className="grid gap-4 rounded-xl border bg-card p-4 sm:grid-cols-3">
           <Field id="as-kpi" label="KPI">
             {(d) => (
               <OptionSelect id="as-kpi" options={kpis.map((k) => ({ value: k.id, label: k.name }))} value={kpiId} onChange={pickKpi} aria-describedby={d} />
@@ -108,7 +108,7 @@ export function AssignForm({ kpis, initialKpiId, people, reviewers, activeAssign
           </Field>
         </section>
 
-        <section className="rounded-xl border">
+        <section className="rounded-xl border bg-card">
           <div className="flex flex-wrap items-center gap-2 border-b p-3">
             <OptionSelect
               className="w-full sm:w-56"
@@ -151,7 +151,7 @@ export function AssignForm({ kpis, initialKpiId, people, reviewers, activeAssign
           </ul>
         </section>
 
-        <section className="grid gap-3 rounded-xl border p-4">
+        <section className="grid gap-3 rounded-xl border bg-card p-4">
           <label className="flex items-start gap-2 text-sm">
             <Checkbox className="mt-0.5" checked={useReviewer} onCheckedChange={(c) => setUseReviewer(Boolean(c))} />
             <span>

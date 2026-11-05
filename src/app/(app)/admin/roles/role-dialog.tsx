@@ -110,7 +110,7 @@ function RoleForm({ onOpenChange, role, permissions, myPermissions }: Props) {
               <div className="grid gap-4">
                 {categories.map((category) => (
                   <div key={category} className="grid gap-1.5">
-                    <div className="text-xs font-medium tracking-wide text-muted-foreground uppercase">{category}</div>
+                    <div className="section-label">{category}</div>
                     <div className="grid gap-1.5 sm:grid-cols-2">
                       {permissions
                         .filter((p) => p.category === category)

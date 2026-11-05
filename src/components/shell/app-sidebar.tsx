@@ -83,10 +83,10 @@ export function AppSidebar({ appName, department, access, badges }: Props) {
       </SidebarContent>
 
       <SidebarFooter>
-        <div className="rounded-md border bg-background px-3 py-2 text-xs group-data-[collapsible=icon]:hidden">
+        <div className="border-t px-2 pt-3 pb-1 text-xs group-data-[collapsible=icon]:hidden">
           <div className="text-muted-foreground">Department</div>
-          <div className="truncate font-medium">
-            {department.name} <span className="text-muted-foreground">· {department.code}</span>
+          <div className="truncate font-medium text-foreground">
+            {department.name} <span className="font-normal text-muted-foreground">· {department.code}</span>
           </div>
         </div>
       </SidebarFooter>

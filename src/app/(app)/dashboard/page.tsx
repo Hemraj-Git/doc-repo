@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { PageHeader } from "@/components/page-header"
 import { Suspense } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -303,27 +304,19 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
     <div className="space-y-8">
       <NoticeToast notice={typeof notice === "string" ? notice : undefined} />
 
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div className="space-y-1">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {greeting()}, {ctx.user.fullName.split(" ")[0]}
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            {[ctx.user.designation, ctx.department.name].filter(Boolean).join(" · ")}
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {ctx.roles.map((r) => (
-            <Badge key={r.id} variant={r.systemKey === "employee" ? "outline" : "secondary"}>
-              {r.name}
-            </Badge>
-          ))}
-        </div>
-      </div>
+      <PageHeader
+        title={`${greeting()}, ${ctx.user.fullName.split(" ")[0]}`}
+        description={[ctx.user.designation, ctx.department.name].filter(Boolean).join(" · ")}
+        actions={ctx.roles.map((r) => (
+          <Badge key={r.id} variant={r.systemKey === "employee" ? "outline" : "secondary"}>
+            {r.name}
+          </Badge>
+        ))}
+      />
 
       {sections.map((s) => (
         <section key={s.section} aria-labelledby={`section-${s.section}`} className="space-y-3">
-          <h2 id={`section-${s.section}`} className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+          <h2 id={`section-${s.section}`} className="section-heading">
             {s.title}
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

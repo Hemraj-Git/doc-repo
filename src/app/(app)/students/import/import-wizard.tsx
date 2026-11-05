@@ -147,7 +147,7 @@ export function ImportWizard({ departments }: { departments: Department[] }) {
 
   return (
     <div className="grid gap-6">
-      <section className="grid gap-4 rounded-xl border p-4 md:grid-cols-[1fr_auto] md:items-end">
+      <section className="grid gap-4 rounded-xl border bg-card p-4 md:grid-cols-[1fr_auto] md:items-end">
         <div className="grid gap-3 sm:grid-cols-2">
           <Field id="imp-file" label="Excel or CSV file" hint="The first sheet is read. Row 1 must hold the column names.">
             {(d) => (
@@ -214,13 +214,13 @@ export function ImportWizard({ departments }: { departments: Department[] }) {
 
           {missing.length === 0 && (
             <section className="space-y-2">
-              <p className={`flex items-center gap-1.5 text-sm ${invalid.length ? "text-destructive" : "text-emerald-700"}`}>
+              <p className={`flex items-center gap-1.5 text-sm ${invalid.length ? "text-destructive" : "text-success-text"}`}>
                 {invalid.length ? <AlertTriangle className="size-4" /> : <CheckCircle2 className="size-4" />}
                 {invalid.length
                   ? `${invalid.length} of ${rows.length} rows need fixing. Correct them in the file and choose it again.`
                   : `All ${rows.length} rows are valid.`}
               </p>
-              <div className="max-h-[28rem] overflow-auto rounded-xl border">
+              <div className="max-h-[28rem] overflow-auto rounded-xl border bg-card">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -241,7 +241,7 @@ export function ImportWizard({ departments }: { departments: Department[] }) {
                         <TableCell className="max-w-48 truncate text-sm">{p.values.courseName}</TableCell>
                         <TableCell className="text-sm">{p.values.batch}</TableCell>
                         <TableCell className="text-xs">
-                          {p.errors.length ? <span className="text-destructive">{p.errors.join(" · ")}</span> : <span className="text-emerald-700">OK</span>}
+                          {p.errors.length ? <span className="text-destructive">{p.errors.join(" · ")}</span> : <span className="text-success-text">OK</span>}
                         </TableCell>
                       </TableRow>
                     ))}

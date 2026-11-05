@@ -8,6 +8,7 @@ import { hasPerm } from "@/lib/auth/permissions"
 import { getOrgChart, listDepartments } from "@/lib/data/org"
 import { DepartmentSwitcher } from "./department-switcher"
 import { OrgTree } from "./org-tree"
+import { EmptyState } from "@/components/empty-state"
 
 export const metadata: Metadata = { title: "Org Chart" }
 
@@ -60,11 +61,10 @@ export default async function OrgChartPage({ searchParams }: PageProps<"/admin/o
         }
       />
       {roots.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <Network className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={Network}>
           <p className="font-medium">No one here yet</p>
           <p className="text-sm text-muted-foreground">Add the department head first, then the people who report to them.</p>
-        </div>
+        </EmptyState>
       ) : (
         <div className="overflow-x-auto rounded-xl border bg-muted/20 p-4 md:p-6">
           <OrgTree roots={roots} viewDepartmentId={view === INSTITUTE ? undefined : view} />

@@ -18,7 +18,7 @@ export function WidgetCard({ widget, children }: { widget: WidgetDef; children?:
       <CardContent className="flex flex-1 flex-col">
         {children ?? (
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed bg-muted/30 py-6 text-xs text-muted-foreground">
-            Data arrives in Phase {widget.phase}
+            Nothing to show yet
           </div>
         )}
       </CardContent>

@@ -15,6 +15,7 @@ import type { AssignmentRow } from "@/lib/data/kpis"
 import { formatDate } from "@/lib/format"
 import { formatKpiScore, PROJECTED_SCORE_HINT } from "@/lib/kpis"
 import { renewAssignments, setScoresReleased } from "../actions"
+import { EmptyState } from "@/components/empty-state"
 
 const addYear = (iso: string, days = 0) => {
   const d = new Date(`${iso}T00:00:00Z`)
@@ -36,10 +37,9 @@ export function AssignmentsTable({ rows, canManage, today }: { rows: AssignmentR
 
   if (rows.length === 0) {
     return (
-      <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-        <ListChecks className="mb-3 size-8 text-muted-foreground" />
+      <EmptyState icon={ListChecks}>
         <p className="font-medium">No KPI assignments match these filters</p>
-      </div>
+      </EmptyState>
     )
   }
 
@@ -82,7 +82,7 @@ export function AssignmentsTable({ rows, canManage, today }: { rows: AssignmentR
           </Button>
         </div>
       )}
-      <div className="rounded-xl border">
+      <div className="rounded-xl border bg-card">
         <Table>
           <TableHeader>
             <TableRow>
@@ -136,7 +136,7 @@ export function AssignmentsTable({ rows, canManage, today }: { rows: AssignmentR
                 <TableCell className="text-sm">{r.kpiName}</TableCell>
                 <TableCell className="text-xs whitespace-nowrap">
                   {formatDate(r.startDate)} – {formatDate(r.endDate)}
-                  {r.status === "active" && r.endDate < today && <div className="text-amber-700">Period over</div>}
+                  {r.status === "active" && r.endDate < today && <div className="text-warning-text">Period over</div>}
                 </TableCell>
                 <TableCell className="text-right tabular-nums">{r.summary.submitted + r.summary.approved + r.summary.scored}</TableCell>
                 <TableCell className="text-right tabular-nums" title={`${r.summary.submitted} waiting for approval, ${r.summary.approved} waiting for score`}>

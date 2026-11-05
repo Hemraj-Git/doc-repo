@@ -56,7 +56,7 @@ export function SchedulerCard({ runs, stale }: { runs: SchedulerRun[]; stale: bo
             )}
           </p>
           {stale && runs.length > 0 && (
-            <p className="flex items-center gap-1.5 text-sm text-amber-700">
+            <p className="flex items-center gap-1.5 text-sm text-warning-text">
               <AlertTriangle className="size-4" /> The daily run has not happened in the last day. Check the pg_cron job.
             </p>
           )}

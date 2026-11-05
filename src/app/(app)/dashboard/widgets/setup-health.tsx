@@ -36,7 +36,7 @@ export async function SetupHealth() {
   if (issues.length === 0) {
     return (
       <p className="flex items-center gap-2 text-sm text-muted-foreground">
-        <CircleCheck className="size-4 text-emerald-600" /> Every department has a head and every user has a manager.
+        <CircleCheck className="size-4 text-success-text" /> Every department has a head and every user has a manager.
       </p>
     )
   }
@@ -45,7 +45,7 @@ export async function SetupHealth() {
     <ul className="space-y-3 text-sm">
       {issues.map((issue) => (
         <li key={issue.key} className="flex gap-2">
-          <TriangleAlert className="mt-0.5 size-4 shrink-0 text-amber-600" />
+          <TriangleAlert className="mt-0.5 size-4 shrink-0 text-warning-text" />
           <div>
             <Link href={issue.href} className="font-medium hover:underline">
               {issue.text}

@@ -12,10 +12,10 @@ export const STUDENT_STATUS_LABELS: Record<StudentStatus, string> = {
 }
 
 export const STUDENT_STATUS_STYLES: Record<StudentStatus, string> = {
-  enrolled: "border-sky-600/30 bg-sky-50 text-sky-800",
-  completed: "border-emerald-600/30 bg-emerald-50 text-emerald-800",
+  enrolled: "border-info-line bg-info-soft text-info-text",
+  completed: "border-success-line bg-success-soft text-success-text",
   discontinued: "border-border bg-muted text-muted-foreground",
-  transferred: "border-amber-600/30 bg-amber-50 text-amber-800",
+  transferred: "border-warning-line bg-warning-soft text-warning-text",
 }
 
 export const GENDER_LABELS: Record<Gender, string> = { male: "Male", female: "Female", other: "Other" }
@@ -28,9 +28,9 @@ export const CERTIFICATE_STATUS_LABELS: Record<CertificateStatus, string> = {
 }
 
 export const CERTIFICATE_STATUS_STYLES: Record<CertificateStatus, string> = {
-  issued: "border-emerald-600/30 bg-emerald-50 text-emerald-800",
-  revoked: "border-rose-600/30 bg-rose-50 text-rose-800",
-  replaced: "border-amber-600/30 bg-amber-50 text-amber-800",
+  issued: "border-success-line bg-success-soft text-success-text",
+  revoked: "border-danger-line bg-danger-soft text-danger-text",
+  replaced: "border-warning-line bg-warning-soft text-warning-text",
 }
 
 export const VERIFICATION_PURPOSES = ["Background verification", "Employment", "Admission", "Other"] as const

@@ -19,7 +19,7 @@ import { deleteArea, moveArea, saveArea } from "../actions"
 type Props = { kpi: Kpi; canManage: boolean }
 
 const INTERVALS = (Object.keys(KPI_RECURRENCE_LABELS) as KpiRecurrence[]).map((k) => ({ value: k, label: KPI_RECURRENCE_LABELS[k] }))
-const BAR_COLOURS = ["bg-sky-500", "bg-emerald-500", "bg-violet-500", "bg-amber-500", "bg-rose-500", "bg-teal-500"]
+const BAR_COLOURS = ["bg-chart-1", "bg-chart-2", "bg-chart-3", "bg-chart-4", "bg-chart-5", "bg-chart-6"]
 
 export function KpiBuilder({ kpi, canManage }: Props) {
   const [pending, startTransition] = useTransition()
@@ -35,10 +35,10 @@ export function KpiBuilder({ kpi, canManage }: Props) {
 
   return (
     <div className="grid gap-6">
-      <section className="rounded-xl border p-4">
+      <section className="rounded-xl border bg-card p-4">
         <div className="mb-2 flex flex-wrap items-center justify-between gap-2 text-sm">
           <span className="font-medium">Weightage</span>
-          <span className={cn("tabular-nums", total === 100 ? "text-emerald-700" : "text-amber-700")}>
+          <span className={cn("tabular-nums", total === 100 ? "text-success-text" : "text-warning-text")}>
             {total}% of 100%{total !== 100 && ` · ${total < 100 ? `${100 - total}% left to assign` : `${total - 100}% too much`}`}
           </span>
         </div>
@@ -56,7 +56,7 @@ export function KpiBuilder({ kpi, canManage }: Props) {
       ) : (
         <ul className="grid gap-3">
           {kpi.areas.map((area, i) => (
-            <li key={area.id} className="flex flex-wrap items-start gap-3 rounded-xl border p-4">
+            <li key={area.id} className="flex flex-wrap items-start gap-3 rounded-xl border bg-card p-4">
               <div className="min-w-0 flex-1 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <h2 className="font-medium">{area.name}</h2>
@@ -66,7 +66,7 @@ export function KpiBuilder({ kpi, canManage }: Props) {
                 {area.description ? (
                   <p className="text-sm whitespace-pre-line text-muted-foreground">{area.description}</p>
                 ) : (
-                  <p className="text-sm text-amber-700">Say what is measured.</p>
+                  <p className="text-sm text-warning-text">Say what is measured.</p>
                 )}
               </div>
               {canManage && (

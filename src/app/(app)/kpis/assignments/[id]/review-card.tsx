@@ -39,7 +39,7 @@ export function ReviewCard({ entry, canDownload, canSendBack }: { entry: ScoreEn
     })
 
   return (
-    <li className="grid gap-3 rounded-xl border p-4 ring-2 ring-sky-500/20">
+    <li className="grid gap-3 rounded-xl border bg-card p-4 ring-2 ring-info-line">
       <div className="min-w-0 space-y-0.5">
         <div className="flex flex-wrap items-center gap-2">
           <ClipboardCheck className="size-4 text-muted-foreground" />

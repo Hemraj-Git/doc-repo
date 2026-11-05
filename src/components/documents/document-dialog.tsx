@@ -300,7 +300,7 @@ function RefHint({ status, standalone }: { status: RefStatus; standalone: boolea
     )
   if (status === "available")
     return (
-      <span className="flex items-center gap-1 text-emerald-700">
+      <span className="flex items-center gap-1 text-success-text">
         <CircleCheck className="size-3" /> Available
       </span>
     )

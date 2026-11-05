@@ -17,7 +17,7 @@ export function Field({ id, label, error, hint, optional, children }: Props) {
   const describedBy = error ? errorId : hint ? hintId : undefined
 
   return (
-    <div className="grid gap-1.5">
+    <div className="grid content-start gap-1.5">
       <Label htmlFor={id}>
         {label}
         {optional && <span className="font-normal text-muted-foreground">(optional)</span>}

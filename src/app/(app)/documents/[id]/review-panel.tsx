@@ -52,7 +52,7 @@ export function ReviewPanel({ documentId, stepId, stepOrder, totalSteps, version
     })
 
   return (
-    <Card className="ring-2 ring-sky-500/30">
+    <Card className="ring-2 ring-info-line">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <ClipboardCheck className="size-4" /> Your review

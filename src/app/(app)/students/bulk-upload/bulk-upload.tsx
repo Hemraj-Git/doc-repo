@@ -131,7 +131,7 @@ export function BulkUpload({ departmentId, departments, students, types }: Props
 
   return (
     <div className="grid gap-6">
-      <section className="grid gap-3 rounded-xl border p-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="grid gap-3 rounded-xl border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
         {departments.length > 1 && (
           <Field id="bu-dept" label="Department">
             {(d) => (
@@ -207,7 +207,7 @@ export function BulkUpload({ departmentId, departments, students, types }: Props
 
       {items.length > 0 && (
         <>
-          <div className="rounded-xl border">
+          <div className="rounded-xl border bg-card">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -255,7 +255,7 @@ export function BulkUpload({ departmentId, departments, students, types }: Props
                       <TableCell className="text-xs">{typeOf(item)?.code ?? "—"}</TableCell>
                       <TableCell className="text-xs">
                         {item.state === "done" ? (
-                          <span className="flex items-center gap-1 text-emerald-700">
+                          <span className="flex items-center gap-1 text-success-text">
                             <CheckCircle2 className="size-3.5" /> Issued
                           </span>
                         ) : item.state === "uploading" ? (

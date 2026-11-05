@@ -21,6 +21,7 @@ import { resetPassword, setUserActive } from "./actions"
 import { DeactivateDialog } from "./deactivate-dialog"
 import { UserDialog } from "./user-dialog"
 import { UserRolesDialog } from "./user-roles-dialog"
+import { EmptyState } from "@/components/empty-state"
 
 type Props = {
   users: UserRow[]
@@ -59,13 +60,12 @@ export function UsersTable(props: Props) {
       </div>
 
       {users.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <UserPlus className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={UserPlus}>
           <p className="font-medium">No users match</p>
           <p className="text-sm text-muted-foreground">Change the filters, or add the department head first.</p>
-        </div>
+        </EmptyState>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>
@@ -115,7 +115,7 @@ export function UsersTable(props: Props) {
                       ) : u.isHead ? (
                         <span className="text-muted-foreground">—</span>
                       ) : (
-                        <span className="text-xs text-amber-700">No manager</span>
+                        <span className="text-xs text-warning-text">No manager</span>
                       )}
                     </TableCell>
                     <TableCell>

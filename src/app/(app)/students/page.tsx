@@ -12,6 +12,7 @@ import { listStudents, studentFacets } from "@/lib/data/students"
 import { STUDENT_STATUS_LABELS, STUDENT_STATUS_STYLES, type StudentStatus } from "@/lib/students"
 import { NewStudentButton } from "./student-dialog"
 import { StudentsToolbar } from "./students-toolbar"
+import { EmptyState } from "@/components/empty-state"
 
 export const metadata: Metadata = { title: "Students" }
 
@@ -74,16 +75,15 @@ export default async function StudentsPage({ searchParams }: PageProps<"/student
       />
 
       {rows.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <GraduationCap className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={GraduationCap}>
           <p className="font-medium">{total === 0 && !get("q") ? "No students yet" : "No students match these filters"}</p>
           {manageable.length > 0 && (
             <p className="text-sm text-muted-foreground">Add students one by one, or import a whole batch from Excel or CSV.</p>
           )}
-        </div>
+        </EmptyState>
       ) : (
         <>
-          <div className="rounded-xl border">
+          <div className="rounded-xl border bg-card">
             <Table>
               <TableHeader>
                 <TableRow>

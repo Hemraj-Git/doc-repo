@@ -11,6 +11,7 @@ import { getDocument } from "@/lib/data/documents"
 import { FORMAT_LABELS, formatBytes, previewKind } from "@/lib/files"
 import { formatDateTime } from "@/lib/format"
 import { FileButtons } from "../../file-buttons"
+import { EmptyState } from "@/components/empty-state"
 
 export async function generateMetadata({ params }: PageProps<"/documents/[id]/preview/[versionId]">): Promise<Metadata> {
   const { id } = await params
@@ -62,8 +63,7 @@ export default async function PreviewPage({ params }: PageProps<"/documents/[id]
       {kind ? (
         <FilePreview versionId={version.id} fileName={version.originalFilename} kind={kind} />
       ) : (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-16 text-center">
-          <FileWarning className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={FileWarning}>
           <p className="font-medium">No in-browser preview for this file type</p>
           <p className="max-w-md text-sm text-muted-foreground">
             Older binary Office formats (.doc, .ppt) can&apos;t be previewed safely in the browser.
@@ -74,7 +74,7 @@ export default async function PreviewPage({ params }: PageProps<"/documents/[id]
               Back to document
             </Link>
           </div>
-        </div>
+        </EmptyState>
       )}
     </div>
   )

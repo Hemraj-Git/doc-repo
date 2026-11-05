@@ -17,8 +17,8 @@ export default async function CertificateCheckPage({ params }: PageProps<"/verif
     const limited = check.outcome === "rate_limited"
     const Icon = limited ? ShieldAlert : SearchX
     return (
-      <section className="flex items-start gap-3 rounded-xl border bg-background p-6">
-        <Icon className="mt-0.5 size-6 shrink-0 text-amber-600" />
+      <section className="flex items-start gap-3 rounded-xl border bg-card p-6">
+        <Icon className="mt-0.5 size-6 shrink-0 text-warning-text" />
         <div>
           <h1 className="font-semibold">{limited ? "Too many requests" : "This certificate link is not valid"}</h1>
           <p className="text-sm text-muted-foreground">
@@ -37,8 +37,8 @@ export default async function CertificateCheckPage({ params }: PageProps<"/verif
   const valid = c.status === "issued"
   return (
     <div className="space-y-6">
-      <section className={`flex items-start gap-3 rounded-xl border bg-background p-6 ${valid ? "border-emerald-600/30" : "border-rose-600/30"}`}>
-        {valid ? <CheckCircle2 className="mt-0.5 size-6 shrink-0 text-emerald-600" /> : <XCircle className="mt-0.5 size-6 shrink-0 text-rose-600" />}
+      <section className={`flex items-start gap-3 rounded-xl border bg-card p-6 ${valid ? "border-success-line" : "border-danger-line"}`}>
+        {valid ? <CheckCircle2 className="mt-0.5 size-6 shrink-0 text-success-text" /> : <XCircle className="mt-0.5 size-6 shrink-0 text-danger-text" />}
         <div className="space-y-1">
           <h1 className="text-lg font-semibold">{valid ? "Valid certificate" : c.status === "replaced" ? "This certificate was replaced" : "This certificate was revoked"}</h1>
           <p className="text-sm">
@@ -54,7 +54,7 @@ export default async function CertificateCheckPage({ params }: PageProps<"/verif
           </p>
         </div>
       </section>
-      <section className="rounded-xl border bg-background p-6">
+      <section className="rounded-xl border bg-card p-6">
         <h2 className="mb-3 text-sm font-medium">Issued to</h2>
         <StudentSummary student={student} />
         <p className="mt-4 text-xs text-muted-foreground">

@@ -66,7 +66,7 @@ function EntryCard({
   )
 
   return (
-    <li className={`grid gap-3 rounded-xl border p-4 ${entry.status === "changes_requested" ? "ring-2 ring-rose-500/30" : ""}`}>
+    <li className={`grid gap-3 rounded-xl border p-4 ${entry.status === "changes_requested" ? "ring-2 ring-danger-line" : ""}`}>
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0 space-y-0.5">
           <div className="flex flex-wrap items-center gap-2">
@@ -82,7 +82,7 @@ function EntryCard({
       </div>
 
       {entry.status === "changes_requested" && entry.returnedComment && (
-        <div className="flex gap-2 rounded-lg border border-rose-600/20 bg-rose-50 p-3 text-sm text-rose-900">
+        <div className="flex gap-2 rounded-lg border border-danger-line bg-danger-soft p-3 text-sm text-danger-text">
           <MessageSquareWarning className="mt-0.5 size-4 shrink-0" />
           <div>
             <div className="font-medium">Your reviewer asked for changes</div>
@@ -147,7 +147,7 @@ export function FillSection({ entries, canDownload, today }: { entries: FillEntr
   return (
     <section className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="flex items-center gap-2 text-sm font-medium tracking-wide text-muted-foreground uppercase">
+        <h2 className="flex items-center gap-2 section-heading">
           <PenLine className="size-4" /> To fill in <span className="tabular-nums">({entries.length})</span>
         </h2>
         {ready.length > 1 && (

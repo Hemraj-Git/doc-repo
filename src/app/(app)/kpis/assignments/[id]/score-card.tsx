@@ -25,12 +25,12 @@ export type ScoreEntry = KpiEntry & {
 
 /** What the person wrote and attached, or that nothing was submitted. */
 export function EntryEvidence({ entry, canDownload }: { entry: KpiEntry; canDownload: boolean }) {
-  if (!entry.submittedAt) return <p className="text-sm font-medium text-rose-800">Nothing submitted. The due date was {formatDate(entry.dueDate)}.</p>
+  if (!entry.submittedAt) return <p className="text-sm font-medium text-danger-text">Nothing submitted. The due date was {formatDate(entry.dueDate)}.</p>
   return (
     <div className="grid gap-2">
       <p className="text-xs text-muted-foreground">
         Submitted {formatDateTime(entry.submittedAt)}
-        {entry.submittedLate && <Badge variant="outline" className="ml-2 border-rose-600/30 bg-rose-50 text-rose-800">Late</Badge>}
+        {entry.submittedLate && <Badge variant="outline" className="ml-2 border-danger-line bg-danger-soft text-danger-text">Late</Badge>}
       </p>
       {entry.details && <p className="rounded-lg border bg-muted/20 p-3 text-sm whitespace-pre-wrap">{entry.details}</p>}
       <EvidenceList files={entry.files} canDownload={canDownload} />
@@ -76,7 +76,7 @@ export function ScoreCard({ entry, canDownload, onDone }: { entry: ScoreEntry; c
     })
 
   return (
-    <li className="grid gap-3 rounded-xl border p-4 ring-2 ring-sky-500/20">
+    <li className="grid gap-3 rounded-xl border bg-card p-4 ring-2 ring-info-line">
       <div className="min-w-0 space-y-0.5">
         <div className="flex flex-wrap items-center gap-2">
           <ClipboardCheck className="size-4 text-muted-foreground" />

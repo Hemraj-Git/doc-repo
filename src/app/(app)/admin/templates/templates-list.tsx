@@ -10,6 +10,7 @@ import { StatusBadge } from "@/components/status-badge"
 import type { TemplateSummary } from "@/lib/data/templates"
 import { formatDate } from "@/lib/format"
 import { TemplateDetailsDialog } from "./template-details-dialog"
+import { EmptyState } from "@/components/empty-state"
 
 type Props = { templates: TemplateSummary[]; departments: { id: string; name: string }[] }
 
@@ -26,16 +27,15 @@ export function TemplatesList({ templates, departments }: Props) {
       </div>
 
       {templates.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <LayoutTemplate className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={LayoutTemplate}>
           <p className="font-medium">No templates yet</p>
           <p className="max-w-md text-sm text-muted-foreground">
             Tip: build the smallest repeating unit first (e.g. a <em>Subject</em> template), then a bigger one (e.g.{" "}
             <em>Program</em>) that repeats it in a slot.
           </p>
-        </div>
+        </EmptyState>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>

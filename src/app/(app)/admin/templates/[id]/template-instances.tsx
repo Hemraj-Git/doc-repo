@@ -34,7 +34,7 @@ export function TemplateInstances({ templateId, version, instances }: { template
     <section className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+          <h2 className="section-heading">
             Created from this template <span className="tabular-nums">({instances.length})</span>
           </h2>
           <p className="text-sm text-muted-foreground">
@@ -49,7 +49,7 @@ export function TemplateInstances({ templateId, version, instances }: { template
           </Button>
         )}
       </div>
-      <div className="rounded-xl border">
+      <div className="rounded-xl border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

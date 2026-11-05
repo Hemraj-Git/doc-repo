@@ -82,7 +82,7 @@ export function CertificatesPanel({ studentId, studentName, certificates, types,
       {certificates.length === 0 ? (
         <div className="rounded-xl border border-dashed py-10 text-center text-sm text-muted-foreground">No certificates yet.</div>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>

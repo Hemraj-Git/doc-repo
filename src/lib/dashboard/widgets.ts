@@ -132,7 +132,7 @@ export const WIDGETS: WidgetDef[] = [
     title: "Recent activity",
     description: "Latest entries in the audit log",
     phase: 5,
-    span: 3,
+    span: 2,
     visible: (c) => hasPerm(c, "audit.view.all"),
   },
 
@@ -289,7 +289,7 @@ export const WIDGETS: WidgetDef[] = [
 
 export function widgetsFor(ctx: AccessContext) {
   const visible = WIDGETS.filter((w) => w.visible(ctx))
-  const order: DashboardSection[] = ["overview", "department", "work", "team"]
+  const order: DashboardSection[] = ["work", "overview", "department", "team"]
   return order
     .map((section) => ({ section, title: SECTION_TITLES[section], widgets: visible.filter((w) => w.section === section) }))
     .filter((s) => s.widgets.length > 0)

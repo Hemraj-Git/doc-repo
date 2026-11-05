@@ -26,7 +26,7 @@ export default async function RequirementsPage({ searchParams }: PageProps<"/req
         description={`Document requirements ${scope}. Create new ones from a folder in the Repository.`}
       />
       <section className="space-y-3">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+        <h2 className="section-heading">
           Open, oldest first <span className="tabular-nums">({count(open)})</span>
         </h2>
         <DocumentsTable
@@ -37,7 +37,7 @@ export default async function RequirementsPage({ searchParams }: PageProps<"/req
         {open.hasMore && <ShowMore shown={shownOpen} param="open" params={{ closed: shownClosed }} />}
       </section>
       <section className="space-y-3">
-        <h2 className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
+        <h2 className="section-heading">
           Closed, most recent first <span className="tabular-nums">({count(done)})</span>
         </h2>
         <DocumentsTable documents={done.rows} columns={["location", "uploader", "version", "updated"]} emptyText="Nothing approved or closed yet." />

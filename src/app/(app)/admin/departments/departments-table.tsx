@@ -18,6 +18,7 @@ import { StatusBadge } from "@/components/status-badge"
 import type { DepartmentRow, PersonOption } from "@/lib/data/org"
 import { setDepartmentActive } from "./actions"
 import { DepartmentDialog } from "./department-dialog"
+import { EmptyState } from "@/components/empty-state"
 
 type Props = { departments: DepartmentRow[]; people: PersonOption[] }
 
@@ -37,13 +38,12 @@ export function DepartmentsTable({ departments, people }: Props) {
       </div>
 
       {departments.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-14 text-center">
-          <Building2 className="mb-3 size-8 text-muted-foreground" />
+        <EmptyState icon={Building2}>
           <p className="font-medium">No departments yet</p>
           <p className="text-sm text-muted-foreground">Create departments first, then add their users.</p>
-        </div>
+        </EmptyState>
       ) : (
-        <div className="rounded-xl border">
+        <div className="rounded-xl border bg-card">
           <Table>
             <TableHeader>
               <TableRow>
@@ -69,7 +69,7 @@ export function DepartmentsTable({ departments, people }: Props) {
                     {d.head ? (
                       d.head.fullName
                     ) : (
-                      <span className="text-xs text-amber-700">Not assigned</span>
+                      <span className="text-xs text-warning-text">Not assigned</span>
                     )}
                   </TableCell>
                   <TableCell className="text-right tabular-nums">

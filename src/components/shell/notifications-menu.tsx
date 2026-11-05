@@ -53,7 +53,7 @@ export function NotificationsMenu({ notifications, unread }: { notifications: No
       >
         <Bell />
         {unread > 0 && (
-          <span className="absolute top-1 right-1 flex min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] leading-4 font-medium text-white tabular-nums">
+          <span className="absolute -top-1 left-1/2 flex min-w-4 ring-2 ring-card items-center justify-center rounded-full bg-destructive px-1 text-[10px] leading-4 font-medium text-white tabular-nums">
             {unread > 99 ? "99+" : unread}
           </span>
         )}

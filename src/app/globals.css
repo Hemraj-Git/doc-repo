@@ -18,6 +18,7 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  --color-chart-6: var(--chart-6);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -34,7 +35,35 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
   --color-primary: var(--primary);
+  /* Status colours. Solid is for fills; soft, text and line are used together on badges and notes. */
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-text: var(--success-text);
+  --color-success-line: var(--success-line);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-text: var(--warning-text);
+  --color-warning-line: var(--warning-line);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-text: var(--danger-text);
+  --color-danger-line: var(--danger-line);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-text: var(--info-text);
+  --color-info-line: var(--info-line);
+  --color-positive: var(--positive);
+  --color-positive-soft: var(--positive-soft);
+  --color-positive-text: var(--positive-text);
+  --color-positive-line: var(--positive-line);
+  --color-kpi: var(--kpi);
+  --color-kpi-soft: var(--kpi-soft);
+  --color-kpi-text: var(--kpi-text);
+  --color-kpi-line: var(--kpi-line);
+  /* Motion: strong ease-out for anything entering or responding to a press. */
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -49,73 +78,133 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Slate neutrals with a slight navy tint, on a very light page so white surfaces stand out. */
+  --background: oklch(0.982 0.003 258);
+  --foreground: oklch(0.23 0.03 258);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.23 0.03 258);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  /* Marine navy */
-  --primary: oklch(0.38 0.11 255);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.6 0.1 250);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.23 0.03 258);
+  /* Navy: primary buttons and main actions */
+  --primary: oklch(0.31 0.085 258);
+  --primary-hover: oklch(0.37 0.095 258);
+  --primary-foreground: oklch(0.985 0.003 258);
+  --secondary: oklch(0.95 0.008 258);
+  --secondary-foreground: oklch(0.28 0.05 258);
+  --muted: oklch(0.955 0.006 258);
+  --muted-foreground: oklch(0.47 0.025 258);
+  --accent: oklch(0.95 0.012 258);
+  --accent-foreground: oklch(0.31 0.085 258);
+  --destructive: oklch(0.52 0.19 25);
+  --border: oklch(0.91 0.008 258);
+  --input: oklch(0.88 0.012 258);
+  --ring: oklch(0.55 0.13 258);
+
+  --success: oklch(0.5 0.12 160);
+  --success-soft: oklch(0.965 0.03 160);
+  --success-text: oklch(0.39 0.09 160);
+  --success-line: oklch(0.84 0.07 160);
+  --warning: oklch(0.72 0.15 75);
+  --warning-soft: oklch(0.97 0.04 85);
+  --warning-text: oklch(0.42 0.09 65);
+  --warning-line: oklch(0.85 0.09 85);
+  --danger: oklch(0.52 0.19 25);
+  --danger-soft: oklch(0.965 0.02 20);
+  --danger-text: oklch(0.43 0.15 25);
+  --danger-line: oklch(0.86 0.06 20);
+  /* Brighter than navy, so an info badge can't be mistaken for a button. */
+  --info: oklch(0.54 0.15 245);
+  --info-soft: oklch(0.96 0.025 240);
+  --info-text: oklch(0.42 0.12 245);
+  --info-line: oklch(0.85 0.06 240);
+  --positive: oklch(0.52 0.09 190);
+  --positive-soft: oklch(0.965 0.025 190);
+  --positive-text: oklch(0.4 0.07 195);
+  --positive-line: oklch(0.85 0.06 190);
+  --kpi: oklch(0.5 0.15 290);
+  --kpi-soft: oklch(0.96 0.025 290);
+  --kpi-text: oklch(0.42 0.14 290);
+  --kpi-line: oklch(0.86 0.05 290);
+
+  /* Charts are led by navy. */
+  --chart-1: oklch(0.4 0.11 258);
+  --chart-2: oklch(0.62 0.14 240);
+  --chart-3: oklch(0.66 0.1 185);
+  --chart-4: oklch(0.76 0.14 80);
+  --chart-5: oklch(0.58 0.15 295);
+  --chart-6: oklch(0.64 0.17 20);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0.003 250);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.38 0.11 255);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.95 0.015 250);
-  --sidebar-accent-foreground: oklch(0.3 0.09 255);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.6 0.1 250);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.33 0.03 258);
+  --sidebar-primary: oklch(0.31 0.085 258);
+  --sidebar-primary-foreground: oklch(0.985 0.003 258);
+  --sidebar-accent: oklch(0.945 0.02 258);
+  --sidebar-accent-foreground: oklch(0.31 0.085 258);
+  --sidebar-border: oklch(0.91 0.008 258);
+  --sidebar-ring: oklch(0.55 0.13 258);
 }
 
+/* Kept in step with the light theme so a toggle is easy to add later. Nothing switches it on yet. */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  --background: oklch(0.17 0.015 258);
+  --foreground: oklch(0.96 0.005 258);
+  --card: oklch(0.21 0.018 258);
+  --card-foreground: oklch(0.96 0.005 258);
+  --popover: oklch(0.21 0.018 258);
+  --popover-foreground: oklch(0.96 0.005 258);
   --primary: oklch(0.72 0.12 250);
-  --primary-foreground: oklch(0.18 0.03 255);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  --primary-hover: oklch(0.78 0.11 250);
+  --primary-foreground: oklch(0.18 0.03 258);
+  --secondary: oklch(0.27 0.02 258);
+  --secondary-foreground: oklch(0.96 0.005 258);
+  --muted: oklch(0.27 0.02 258);
+  --muted-foreground: oklch(0.72 0.02 258);
+  --accent: oklch(0.27 0.02 258);
+  --accent-foreground: oklch(0.96 0.005 258);
+  --destructive: oklch(0.7 0.19 22);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.62 0.11 250);
+
+  --success: oklch(0.68 0.14 160);
+  --success-soft: oklch(0.28 0.05 160);
+  --success-text: oklch(0.86 0.1 160);
+  --success-line: oklch(0.42 0.08 160);
+  --warning: oklch(0.78 0.14 75);
+  --warning-soft: oklch(0.29 0.05 75);
+  --warning-text: oklch(0.87 0.11 85);
+  --warning-line: oklch(0.45 0.08 75);
+  --danger: oklch(0.68 0.18 22);
+  --danger-soft: oklch(0.28 0.06 22);
+  --danger-text: oklch(0.85 0.09 22);
+  --danger-line: oklch(0.43 0.1 22);
+  --info: oklch(0.68 0.13 240);
+  --info-soft: oklch(0.28 0.05 245);
+  --info-text: oklch(0.85 0.08 240);
+  --info-line: oklch(0.43 0.08 245);
+  --positive: oklch(0.68 0.09 190);
+  --positive-soft: oklch(0.28 0.04 190);
+  --positive-text: oklch(0.85 0.07 190);
+  --positive-line: oklch(0.43 0.06 190);
+  --kpi: oklch(0.68 0.13 290);
+  --kpi-soft: oklch(0.28 0.05 290);
+  --kpi-text: oklch(0.85 0.08 290);
+  --kpi-line: oklch(0.43 0.08 290);
+
+  --chart-1: oklch(0.72 0.12 250);
+  --chart-2: oklch(0.68 0.13 225);
+  --chart-3: oklch(0.7 0.1 185);
+  --chart-4: oklch(0.78 0.14 80);
+  --chart-5: oklch(0.68 0.13 295);
+  --chart-6: oklch(0.68 0.17 20);
+  --sidebar: oklch(0.21 0.018 258);
+  --sidebar-foreground: oklch(0.9 0.01 258);
+  --sidebar-primary: oklch(0.72 0.12 250);
+  --sidebar-primary-foreground: oklch(0.18 0.03 258);
+  --sidebar-accent: oklch(0.27 0.03 258);
+  --sidebar-accent-foreground: oklch(0.96 0.005 258);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.62 0.11 250);
 }
 
 @layer base {
@@ -127,5 +216,49 @@
   }
   html {
     @apply font-sans;
+  }
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary {
+    cursor: pointer;
+  }
+  [data-slot="table"] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Section titles on a page, e.g. "To review (3)". */
+@utility section-heading {
+  @apply text-sm font-semibold text-foreground;
+}
+
+/* Small labels above a group inside a section or dialog. */
+@utility section-label {
+  @apply text-xs font-medium tracking-wide text-muted-foreground uppercase;
+}
+
+/*
+ * Reduce motion: nothing moves, and fades become near-instant. Spinners keep
+ * spinning, because they are the only sign that something is still working.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-spin {
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite !important;
+  }
+  [data-slot="button"]:active {
+    transform: none !important;
   }
 }

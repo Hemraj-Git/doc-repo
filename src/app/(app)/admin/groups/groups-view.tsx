@@ -17,6 +17,7 @@ import { PersonCombobox, type PersonItem } from "@/components/person-combobox"
 import type { GroupRow } from "@/lib/data/folder-access"
 import { FOLDER_ACCESS_LABELS, groupSchema } from "@/lib/validation/folder-access"
 import { addGroupMember, createGroup, deleteGroup, removeGroupMember, updateGroup } from "./actions"
+import { EmptyState } from "@/components/empty-state"
 
 export function GroupsView({ groups, people }: { groups: GroupRow[]; people: PersonItem[] }) {
   // undefined = closed, null = new, row = editing
@@ -31,10 +32,9 @@ export function GroupsView({ groups, people }: { groups: GroupRow[]; people: Per
       </div>
 
       {groups.length === 0 ? (
-        <div className="flex flex-col items-center rounded-xl border border-dashed py-10 text-center">
-          <UsersRound className="mb-2 size-7 text-muted-foreground" />
+        <EmptyState icon={UsersRound}>
           <p className="text-sm text-muted-foreground">No groups yet. Create one, then give it access to a folder.</p>
-        </div>
+        </EmptyState>
       ) : (
         <ul className="grid gap-4 lg:grid-cols-2">
           {groups.map((g) => (
@@ -93,7 +93,7 @@ function GroupCard({ group, people, onEdit }: { group: GroupRow; people: PersonI
       </div>
 
       <div className="grid gap-1.5">
-        <h3 className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+        <h3 className="section-label">
           Members <span className="tabular-nums">({group.members.length})</span>
         </h3>
         {group.members.length > 0 && (
@@ -116,7 +116,7 @@ function GroupCard({ group, people, onEdit }: { group: GroupRow; people: PersonI
       </div>
 
       <div className="grid gap-1.5">
-        <h3 className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Folder access</h3>
+        <h3 className="section-label">Folder access</h3>
         {group.folders.length === 0 ? (
           <p className="text-sm text-muted-foreground">None yet. Use Manage access on a folder&apos;s page.</p>
         ) : (
